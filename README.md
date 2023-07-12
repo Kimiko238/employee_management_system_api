@@ -99,3 +99,108 @@ Response
   ]
 }
 ```
+
+#### 作成
+
+URL：employee/create
+
+ローカルテスト
+
+`http://localhost:8080/employee/create`
+
+Request
+
+例）
+
+```json
+{
+  "nameFirst": "TestFirst",
+  "nameLast": "TestLast",
+  "nameFirstKana": "テストファースト",
+  "nameLastKana": "テストラスト",
+  "employeePosition": "1",
+  "systemRole": "1",
+  "postalCode": "100-0000",
+  "prefectures": "東京都",
+  "municipalities": "千代田区",
+  "address1": "テスト1-1-1",
+  "address2": "テストマンション101",
+  "phoneNumber": "080-0000-0000",
+  "birthday": "2000/01/01",
+  "sex": "1"
+}
+```
+
+Response
+
+```json
+{
+  "resultCode": 0
+}
+```
+
+### 更新
+
+URL：employee/update
+
+ローカルテスト
+
+`http://localhost:8080/employee/update`
+
+Request
+
+例）
+
+```json
+{
+  "id": "1",
+  "nameFirst": "TestFirst",
+  "nameLast": "TestLast",
+  "nameFirstKana": "テストファースト",
+  "nameLastKana": "テストラスト",
+  "employeePosition": "1",
+  "systemRole": "1",
+  "postalCode": "100-0000",
+  "prefectures": "東京都",
+  "municipalities": "千代田区",
+  "address1": "テスト1-1-1",
+  "address2": "テストマンション101",
+  "phoneNumber": "080-0000-0000",
+  "birthday": "2000/01/01",
+  "sex": "1"
+}
+```
+
+Response
+
+```json
+{
+  "resultCode": 0
+}
+```
+
+### 削除
+
+URL：employee/delete
+
+ローカルテスト
+
+`http://localhost:8080/employee/delete`
+
+Request
+
+例）
+
+```json
+{
+  "id": "1"
+}
+```
+
+Response
+
+```json
+{
+  "resultCode": 0
+}
+```
