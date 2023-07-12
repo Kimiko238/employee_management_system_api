@@ -26,7 +26,8 @@
 
 ### テストツール
 
-Postman をインストールしてください。
+Postman をインストールして使用しましょう。
+
 https://qiita.com/ponsuke0531/items/03483449ea0df505a540
 
 ## 機能
