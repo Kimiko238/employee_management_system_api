@@ -1,0 +1,25 @@
+package jp.co.highjunk.merryapi.common.response;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jp.co.highjunk.merryapi.common.enums.ResultStatus;
+import lombok.Data;
+
+/**
+ * 共通レスポンスクラス
+ *
+ * @author nakamurayuuma
+ *
+ */
+@Data
+public class CommonResponse {
+    /** 名前 名 */
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	@JsonProperty("result_status")
+    private String resultStatus;
+
+	public CommonResponse(ResultStatus resultStatus) {
+		this.resultStatus = resultStatus.getCode();
+	}
+}

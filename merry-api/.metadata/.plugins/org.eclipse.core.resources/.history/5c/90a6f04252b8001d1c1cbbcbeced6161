@@ -1,0 +1,80 @@
+package jp.co.highjunk.merryapi.application.controller;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeRequest;
+import jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeResponse;
+import jp.co.highjunk.merryapi.common.response.CommonResponse;
+import jp.co.highjunk.merryapi.domain.dto.EmployeeDto;
+import jp.co.highjunk.merryapi.domain.service.EmployeeService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+/**
+ * 社員コントローラー
+ *
+ * @author nakamurayuuma
+ *
+ */
+@RequiredArgsConstructor
+@RestController
+public class EmployeeController {
+
+    /** 社員サービス */
+    @NonNull
+    private final EmployeeService employeeService;
+
+    /** ModelMapper */
+    @NonNull
+    private final ModelMapper modelMapper;
+
+    /**
+     * 社員取得
+     *
+     * @param request リクエスト
+     * @return ResponseEntity EmployeeGetResponse 200
+     */
+    @GetMapping("/employee")
+    public ResponseEntity<List<EmployeeResponse>> find(@RequestParam List<Integer> ids) {
+        return ResponseEntity.ok(
+        		this.employeeService.find(ids)
+        			.stream()
+        			.map(dto -> new EmployeeResponse(dto))
+        			.toList()
+        	   );
+    }
+
+    /**
+     * 社員作成
+     *
+     * @param request リクエスト
+     * @return ResponseEntity EmployeeGetResponse 200
+     */
+    @PostMapping("/employee")
+    public ResponseEntity<CommonResponse> create(@RequestBody EmployeeRequest request) {
+        return ResponseEntity.ok(new CommonResponse(this.employeeService.create(this.modelMapper.map(request, EmployeeDto.class))));
+    }
+
+    /**
+     * 社員取得
+     *
+     * @return ResponseEntity EmployeeGetResponse 200
+     */
+    @GetMapping("/employees")
+    public ResponseEntity<List<EmployeeResponse>> findAll() {
+        return ResponseEntity.ok(
+        		this.employeeService.findAll()
+        			.stream()
+        			.map(dto -> new EmployeeResponse(dto))
+        			.toList()
+        	   );
+    }
+}

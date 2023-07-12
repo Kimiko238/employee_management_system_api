@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.domain.dto.EmployeeDto"/>
+    <fullyQualifiedTypeName name="org.apache.commons.lang3.StringUtils"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonInclude"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="org.modelmapper.Converter"/>
+    <fullyQualifiedTypeName name="org.modelmapper.AbstractConverter"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.common.enums.EmployeePosition"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.common.enums.Sex"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.common.enums.SystemRole"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.ZoneId"/>
+    <fullyQualifiedTypeName name="java.time.DateTimeException"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.WebMvcConfigurer"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.CorsRegistry"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeResponse"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.common.response.CommonResponse"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.common.enums.ResultStatus"/>
+    <fullyQualifiedTypeName name="jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="org.springframework.util.ObjectUtils"/>
+    <fullyQualifiedTypeName name="org.apache.commons.lang3.ObjectUtils"/>
+</qualifiedTypeNameHistroy>

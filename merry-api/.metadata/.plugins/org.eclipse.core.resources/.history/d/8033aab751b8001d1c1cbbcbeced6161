@@ -1,0 +1,134 @@
+package jp.co.highjunk.merryapi.domain.service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import jp.co.highjunk.merryapi.common.enums.ResultStatus;
+import jp.co.highjunk.merryapi.domain.dto.EmployeeDto;
+import jp.co.highjunk.merryapi.infrastructure.mapper.EmployeeMapper;
+import jp.co.highjunk.merryapi.infrastructure.model.Employee;
+import jp.co.highjunk.merryapi.infrastructure.model.EmployeeExample;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+/**
+ * 社員サービス
+ *
+ * @author nakamurayuuma
+ *
+ */
+@RequiredArgsConstructor
+@Service
+public class EmployeeService {
+
+    /** ModelMapper */
+    @NonNull
+    private final ModelMapper modelMapper;
+
+    /** EmployeeMapper */
+    @NonNull
+    private final EmployeeMapper employeeMapper;
+
+    /**
+     * 社員取得
+     *
+     * @param idList IDリスト
+     * @return 社員リスト
+     */
+    public List<EmployeeDto> find(List<Integer> idList) {
+        if (CollectionUtils.isEmpty(idList))
+            return new ArrayList<EmployeeDto>();
+
+        EmployeeExample example = new EmployeeExample();
+        example.createCriteria().andIdIn(idList);
+        List<Employee> employeeList = this.employeeMapper.selectByExample(example);
+
+        this.sortById(employeeList, false);
+
+        return employeeList.stream().map(e -> this.modelMapper.map(e, EmployeeDto.class)).toList();
+    }
+
+    /**
+     * 社員取得
+     *
+     * @return 社員リスト
+     */
+    public List<EmployeeDto> findAll() {
+        EmployeeExample example = new EmployeeExample();
+        example.createCriteria();
+        List<Employee> employeeList = this.employeeMapper.selectByExample(example);
+
+        this.sortById(employeeList, false);
+
+        return employeeList.stream().map(e -> this.modelMapper.map(e, EmployeeDto.class)).toList();
+    }
+
+    /**
+     * 社員作成
+     *
+     * @param employeeDto 社員DTO
+     * @return 社員リスト
+     */
+    public ResultStatus create(EmployeeDto employeeDto) {
+        if (ObjectUtils.isEmpty(employeeDto))
+            return ResultStatus.ERROR;
+
+        Employee employee = new Employee();
+
+
+        this.employeeMapper.insert(this.modelMapper.map(employeeDto, Employee.class));
+
+        return ResultStatus.SUCCESS;
+    }
+
+    /**
+     * IDソート
+     * @param list 対象リスト
+     */
+    private void sortById(List<Employee> list, boolean revert) {
+        Collections.sort(
+    		list,
+			new Comparator<Employee>() {
+				@Override
+				public int compare(Employee o1, Employee o2) {
+					if (o1.getId() > o2.getId()) {
+						return revert ? -1 : 1;
+					} else {
+						return revert ? 1 : -1;
+					}
+				}
+			}
+        );
+    }
+
+    /**
+     * Employee作成
+     * @param dto EmployeeDto
+     * @return Employee
+     */
+    private Employee createEmployee(EmployeeDto dto) {
+    	Employee employee = new Employee();
+
+    	employee.setNameFirst(dto.getNameFirst());
+    	employee.setNameLast(dto.getNameLast());
+    	employee.setNameFirstKana(dto.getNameFirstKana());
+    	employee.setNameLastKana(dto.getNameLastKana());
+    	employee.setEmployeePosition(ObjectUtils.isEmpty(dto.getEmployeePosition()) ? null : dto.getEmployeePosition().getCode());
+    	employee.setSystemRole(ObjectUtils.isEmpty(dto.getSystemRole()) ? null : dto.getSystemRole().getCode());
+    	employee.setPostalCode(dto.getPostalCode());
+    	employee.setPrefectures(dto.getPrefectures());
+    	employee.setMunicipalities(dto.getMunicipalities());
+    	employee.setAddress1(dto.getAddress1());
+    	employee.setAddress2(dto.getAddress2());
+    	employee.setPhoneNumber(dto.getPhoneNumber());
+
+    	return employee;
+    }
+}
