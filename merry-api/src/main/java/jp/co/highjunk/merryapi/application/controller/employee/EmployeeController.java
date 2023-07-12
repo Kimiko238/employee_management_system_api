@@ -3,6 +3,7 @@ package jp.co.highjunk.merryapi.application.controller.employee;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -77,6 +78,20 @@ public class EmployeeController {
     public ResponseEntity<ResultResponse> update(@RequestBody EmployeeRequest request) {
         return ResponseEntity.ok(
                 this.employeeService.update(new EmployeeDto(request))
+                        ? new ResultResponse(ResultCode.OK.getCode())
+                        : new ResultResponse(ResultCode.NG.getCode()));
+    }
+
+    /**
+     * 社員削除
+     *
+     * @param request リクエスト
+     * @return ResponseEntity EmployeeGetResponse 200
+     */
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResultResponse> delete(@RequestBody EmployeeRequest request) {
+        return ResponseEntity.ok(
+                this.employeeService.delete(new EmployeeDto(request))
                         ? new ResultResponse(ResultCode.OK.getCode())
                         : new ResultResponse(ResultCode.NG.getCode()));
     }
