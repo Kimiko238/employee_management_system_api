@@ -14,6 +14,7 @@ import jp.co.highjunk.merryapi.application.controller.common.dto.ResultResponse;
 import jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeRequest;
 import jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeResponse;
 import jp.co.highjunk.merryapi.common.enums.ResultCode;
+import jp.co.highjunk.merryapi.domain.dto.EmployeeDto;
 import jp.co.highjunk.merryapi.domain.service.EmployeeService;
 
 /**
@@ -59,6 +60,9 @@ public class EmployeeController {
      */
     @PostMapping("/create")
     public ResponseEntity<ResultResponse> create(@RequestBody EmployeeRequest request) {
-        return ResponseEntity.ok(new ResultResponse(ResultCode.OK.getCode()));
+        return ResponseEntity.ok(
+                this.employeeService.create(new EmployeeDto(request))
+                        ? new ResultResponse(ResultCode.OK.getCode())
+                        : new ResultResponse(ResultCode.NG.getCode()));
     }
 }

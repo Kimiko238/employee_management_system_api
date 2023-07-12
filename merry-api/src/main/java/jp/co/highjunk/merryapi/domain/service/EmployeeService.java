@@ -1,9 +1,11 @@
 package jp.co.highjunk.merryapi.domain.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,26 @@ public class EmployeeService {
         List<Employee> employeeList = this.employeeMapper.selectByExample(example);
 
         return employeeList.stream().map(e -> this.modelMapper.map(e, EmployeeDto.class)).toList();
+    }
+
+    /**
+     * 社員作成
+     *
+     * @param dto 社員DTO
+     * @return true:OK、false:NG
+     */
+    public boolean create(EmployeeDto dto) {
+        if (ObjectUtils.isEmpty(dto)) {
+            return false;
+        }
+
+        // 社員エンティティへ変換
+        Employee employee = this.modelMapper.map(dto, Employee.class);
+        // 作成日、更新日設定
+        Date nowDate = new Date();
+        employee.setCreatedAt(nowDate);
+        employee.setUpdatedAt(nowDate);
+
+        return this.employeeMapper.insert(employee) > 0 ? true : false;
     }
 }

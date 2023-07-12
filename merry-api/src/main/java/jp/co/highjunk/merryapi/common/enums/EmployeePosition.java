@@ -62,4 +62,18 @@ public enum EmployeePosition {
         }
         return null;
     }
+
+    /**
+     * Nameと一致するオブジェクト取得
+     *
+     * @param name Name
+     * @return オブジェクト
+     */
+    public static EmployeePosition getObject(String name) {
+        for (EmployeePosition e : EmployeePosition.values()) {
+            if (e.getName().equals(name))
+                return e;
+        }
+        return null;
+    }
 }

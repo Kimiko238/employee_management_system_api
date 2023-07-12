@@ -1,7 +1,10 @@
 package jp.co.highjunk.merryapi.domain.dto;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
+import jp.co.highjunk.merryapi.application.controller.employee.dto.EmployeeRequest;
 import jp.co.highjunk.merryapi.common.enums.EmployeePosition;
 import jp.co.highjunk.merryapi.common.enums.Sex;
 import jp.co.highjunk.merryapi.common.enums.SystemRole;
@@ -43,4 +46,47 @@ public class EmployeeDto {
     private LocalDate birthday;
     /** 性別 */
     private Sex sex;
+
+    /**
+     * コンストラクタ
+     * ※初期化なし
+     */
+    public EmployeeDto() {
+    }
+
+    /**
+     * コンストラクタ
+     *
+     * @param request 社員リクエスト
+     */
+    public EmployeeDto(EmployeeRequest request) {
+        this.id = request.getId();
+        this.nameFirst = request.getNameFirst();
+        this.nameLast = request.getNameLast();
+        this.nameFirstKana = request.getNameFirstKana();
+        this.nameLastKana = request.getNameLastKana();
+        Optional<String> optEmployeePosition = Optional.ofNullable(request.getEmployeePosition());
+        this.employeePosition = optEmployeePosition.isPresent()
+                ? EmployeePosition.getObject(Integer.parseInt(optEmployeePosition.get()))
+                : null;
+        Optional<String> optSystemRole = Optional.ofNullable(request.getSystemRole());
+        this.systemRole = optSystemRole.isPresent()
+                ? SystemRole.getObject(Integer.parseInt(optSystemRole.get()))
+                : null;
+        this.postalCode = request.getPostalCode();
+        this.prefectures = request.getPrefectures();
+        this.municipalities = request.getMunicipalities();
+        this.address1 = request.getAddress1();
+        this.address2 = request.getAddress2();
+        this.phoneNumber = request.getPhoneNumber();
+        Optional<String> optBirthday = Optional.ofNullable(request.getBirthday());
+        this.birthday = optBirthday.isPresent()
+                ? LocalDate.parse(optBirthday.get(), DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+                : null;
+        Optional<String> optSex = Optional.ofNullable(request.getSex());
+        this.sex = optSex.isPresent()
+                ? Sex.getObject(Integer.parseInt(optSex.get()))
+                : null;
+
+    }
 }

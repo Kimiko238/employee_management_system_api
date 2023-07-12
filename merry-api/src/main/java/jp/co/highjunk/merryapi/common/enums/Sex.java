@@ -47,4 +47,18 @@ public enum Sex {
         }
         return null;
     }
+
+    /**
+     * Nameと一致するオブジェクト取得
+     *
+     * @param name Name
+     * @return オブジェクト
+     */
+    public static Sex getObject(String name) {
+        for (Sex e : Sex.values()) {
+            if (e.getName().equals(name))
+                return e;
+        }
+        return null;
+    }
 }

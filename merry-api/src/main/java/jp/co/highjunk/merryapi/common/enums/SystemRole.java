@@ -51,4 +51,18 @@ public enum SystemRole {
         }
         return null;
     }
+
+    /**
+     * Nameと一致するオブジェクト取得
+     *
+     * @param name Name
+     * @return オブジェクト
+     */
+    public static SystemRole getObject(String name) {
+        for (SystemRole e : SystemRole.values()) {
+            if (e.getName().equals(name))
+                return e;
+        }
+        return null;
+    }
 }
