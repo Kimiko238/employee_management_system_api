@@ -69,4 +69,25 @@ public class EmployeeService {
 
         return this.employeeMapper.insert(employee) > 0 ? true : false;
     }
+
+    /**
+     * 社員更新
+     *
+     * @param dto 社員DTO
+     * @return true:OK、false:NG
+     */
+    public boolean update(EmployeeDto dto) {
+        if (ObjectUtils.isEmpty(dto) || dto.getId() == null) {
+            return false;
+        }
+
+        // 社員エンティティへ変換
+        Employee employee = this.modelMapper.map(dto, Employee.class);
+        // 作成日、更新日設定
+        employee.setUpdatedAt(new Date());
+
+        EmployeeExample example = new EmployeeExample();
+        example.createCriteria().andIdEqualTo(employee.getId());
+        return this.employeeMapper.updateByExampleSelective(employee, example) > 0 ? true : false;
+    }
 }
