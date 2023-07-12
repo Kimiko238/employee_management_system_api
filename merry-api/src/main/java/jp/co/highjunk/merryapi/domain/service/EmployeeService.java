@@ -17,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 /**
  * 社員サービス
  *
- * @author nakamurayuuma
- *
  */
 @RequiredArgsConstructor
 @Service

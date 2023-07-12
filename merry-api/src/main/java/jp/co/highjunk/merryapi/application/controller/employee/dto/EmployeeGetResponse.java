@@ -8,13 +8,11 @@ import lombok.Data;
 /**
  * 社員レスポンス
  *
- * @author nakamurayuuma
- *
  */
 @Data
 public class EmployeeGetResponse {
     /** 社員DTOリスト */
-    private List<EmployeeDto> employeeList;
+    private List<EmployeeResponse> employeeList;
 
     /**
      * コンストラクタ
@@ -22,6 +20,6 @@ public class EmployeeGetResponse {
      * @param employeeDtoList 社員DTOリスト
      */
     public EmployeeGetResponse(List<EmployeeDto> employeeDtoList) {
-        this.employeeList = employeeDtoList;
+        this.employeeList = employeeDtoList.stream().map(dto -> new EmployeeResponse(dto)).toList();
     }
 }

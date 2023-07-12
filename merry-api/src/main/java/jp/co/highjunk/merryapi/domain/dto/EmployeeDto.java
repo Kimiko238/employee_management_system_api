@@ -10,11 +10,11 @@ import lombok.Data;
 /**
  * 社員Dtoクラス
  *
- * @author nakamurayuuma
- *
  */
 @Data
 public class EmployeeDto {
+    /** ID */
+    private Integer id;
     /** 名前 名 */
     private String nameFirst;
     /** 名前 性 */
@@ -25,7 +25,7 @@ public class EmployeeDto {
     private String nameLastKana;
     /** 役職 */
     private EmployeePosition employeePosition;
-    /** 役職 */
+    /** システムロール */
     private SystemRole systemRole;
     /** 郵便番号 */
     private String postalCode;
