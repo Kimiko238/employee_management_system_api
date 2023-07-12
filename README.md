@@ -42,3 +42,60 @@ URL：employee/find
 例）ID が 5、6、7 の社員取得
 
 `http://localhost:8080/employee/find?ids=5&ids=6&ids=7`
+
+Response
+
+```json
+{
+  "employeeList": [
+    {
+      "nameFirst": "テスト名前１",
+      "nameLast": "テスト苗字１",
+      "nameFirstKana": "テストナマエ１",
+      "nameLastKana": "テストミョウジ１",
+      "employeePosition": null,
+      "systemRole": null,
+      "postalCode": "100-0001",
+      "prefectures": "東京都",
+      "municipalities": "千代田区",
+      "address1": "テスト町",
+      "address2": "テスト1-11-1",
+      "phoneNumber": null,
+      "birthday": null,
+      "sex": null
+    },
+    {
+      "nameFirst": "テスト名前２",
+      "nameLast": "テスト苗字２",
+      "nameFirstKana": "テストナマエ２",
+      "nameLastKana": "テストミョウジ２",
+      "employeePosition": null,
+      "systemRole": null,
+      "postalCode": "100-0002",
+      "prefectures": "東京都",
+      "municipalities": "千代田区",
+      "address1": "テスト町",
+      "address2": "テスト1-11-2",
+      "phoneNumber": null,
+      "birthday": null,
+      "sex": null
+    },
+    {
+      "nameFirst": "テスト名前３",
+      "nameLast": "テスト苗字３",
+      "nameFirstKana": "テストナマエ３",
+      "nameLastKana": "テストミョウジ３",
+      "employeePosition": null,
+      "systemRole": null,
+      "postalCode": "100-0003",
+      "prefectures": "東京都",
+      "municipalities": "千代田区",
+      "address1": "テスト町",
+      "address2": "テスト1-11-3",
+      "phoneNumber": null,
+      "birthday": null,
+      "sex": null
+    }
+  ]
+}
+```
