@@ -1193,6 +1193,76 @@ public class EmployeeExample {
             return (Criteria) this;
         }
 
+        public Criteria andStationIsNull() {
+            addCriterion("station is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationIsNotNull() {
+            addCriterion("station is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationEqualTo(String value) {
+            addCriterion("station =", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationNotEqualTo(String value) {
+            addCriterion("station <>", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationGreaterThan(String value) {
+            addCriterion("station >", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationGreaterThanOrEqualTo(String value) {
+            addCriterion("station >=", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationLessThan(String value) {
+            addCriterion("station <", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationLessThanOrEqualTo(String value) {
+            addCriterion("station <=", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationLike(String value) {
+            addCriterion("station like", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationNotLike(String value) {
+            addCriterion("station not like", value, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationIn(List<String> values) {
+            addCriterion("station in", values, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationNotIn(List<String> values) {
+            addCriterion("station not in", values, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationBetween(String value1, String value2) {
+            addCriterion("station between", value1, value2, "station");
+            return (Criteria) this;
+        }
+
+        public Criteria andStationNotBetween(String value1, String value2) {
+            addCriterion("station not between", value1, value2, "station");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedAtIsNull() {
             addCriterion("created_at is null");
             return (Criteria) this;

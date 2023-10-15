@@ -46,6 +46,8 @@ public class EmployeeDto {
         private LocalDate birthday;
         /** 性別 */
         private Sex sex;
+        /** 最寄り駅 */
+        private String station;
 
         /**
          * コンストラクタ
@@ -87,6 +89,6 @@ public class EmployeeDto {
                 this.sex = optSex.isPresent()
                                 ? Sex.getObject(Integer.parseInt(optSex.get()))
                                 : null;
-
+                this.station = request.getStation();
         }
 }
