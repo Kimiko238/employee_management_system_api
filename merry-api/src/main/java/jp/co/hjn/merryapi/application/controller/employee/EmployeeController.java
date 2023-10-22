@@ -85,7 +85,12 @@ public class EmployeeController {
          */
         @PutMapping("/update")
         public ResponseEntity<ResultResponse> update(
-                        @RequestBody EmployeeRequest request) {
+                        @RequestBody @Validated({ EmployeeRequest.UpdateEmployee.class }) EmployeeRequest request,
+                        Errors errors) {
+                if (errors.hasErrors()) {
+                        errors.getAllErrors().stream().forEach(e -> System.out.println(e.getDefaultMessage()));
+                        return ResponseEntity.badRequest().body(new ResultResponse(ResultCode.NG.getCode()));
+                }
                 return ResponseEntity.ok(
                                 this.employeeService.update(new EmployeeDto(request))
                                                 ? new ResultResponse(ResultCode.OK.getCode())
