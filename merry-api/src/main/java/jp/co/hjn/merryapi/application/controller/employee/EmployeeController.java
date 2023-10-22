@@ -68,7 +68,8 @@ public class EmployeeController {
                         @RequestBody @Validated({ EmployeeRequest.CreateEmployee.class }) EmployeeRequest request,
                         Errors errors) {
                 if (errors.hasErrors()) {
-                        errors.getAllErrors().stream().forEach(e -> System.out.println(e.getDefaultMessage()));
+                        errors.getAllErrors().stream().forEach(
+                                        e -> System.out.println(e.getDefaultMessage()));
                         return ResponseEntity.badRequest().body(new ResultResponse(ResultCode.NG.getCode()));
                 }
                 return ResponseEntity.ok(
@@ -88,7 +89,8 @@ public class EmployeeController {
                         @RequestBody @Validated({ EmployeeRequest.UpdateEmployee.class }) EmployeeRequest request,
                         Errors errors) {
                 if (errors.hasErrors()) {
-                        errors.getAllErrors().stream().forEach(e -> System.out.println(e.getDefaultMessage()));
+                        errors.getAllErrors().stream().forEach(
+                                        e -> System.out.println(e.getDefaultMessage()));
                         return ResponseEntity.badRequest().body(new ResultResponse(ResultCode.NG.getCode()));
                 }
                 return ResponseEntity.ok(
