@@ -112,4 +112,21 @@ public class EmployeeService {
         example.createCriteria().andIdEqualTo(dto.getId());
         return this.employeeMapper.updateByExampleSelective(employee, example) > 0 ? true : false;
     }
+
+    /**
+     * 社員取得（条件：役職）
+     *
+     * @param positionList 役職リスト
+     * @return 社員リスト
+     */
+    public List<EmployeeDto> findPositon(List<Integer> positionList) {
+        if (CollectionUtils.isEmpty(positionList))
+            return new ArrayList<EmployeeDto>();
+
+        EmployeeExample example = new EmployeeExample();
+        example.createCriteria().andEmployeePositionIn(positionList);
+        List<Employee> employeeList = this.employeeMapper.selectByExample(example);
+
+        return employeeList.stream().map(e -> this.modelMapper.map(e, EmployeeDto.class)).toList();
+    }
 }

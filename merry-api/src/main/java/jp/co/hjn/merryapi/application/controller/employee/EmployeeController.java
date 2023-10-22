@@ -106,4 +106,19 @@ public class EmployeeController {
                                                 ? new ResultResponse(ResultCode.OK.getCode())
                                                 : new ResultResponse(ResultCode.NG.getCode()));
         }
+
+        /**
+         * 社員取得（条件：役職）
+         *
+         * @param request リクエスト
+         * @return ResponseEntity EmployeeGetResponse
+         */
+        @GetMapping("/find/position")
+        public ResponseEntity<List<EmployeeResponse>> findPosition(@RequestParam List<Integer> positions) {
+                return ResponseEntity.ok(
+                                this.employeeService.findPositon(positions)
+                                                .stream()
+                                                .map(dto -> new EmployeeResponse(dto))
+                                                .toList());
+        }
 }
